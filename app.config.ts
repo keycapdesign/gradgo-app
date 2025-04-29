@@ -14,5 +14,14 @@ export default defineConfig({
         projects: ['./tsconfig.json'],
       }),
     ],
+    optimizeDeps: {
+      exclude: ['@tanstack/start-server-core'],
+    },
+    build: {
+      rollupOptions: {
+        external: ['node:stream', 'node:stream/web', 'node:fs', 'node:path', 'node:async_hooks'],
+      },
+    },
   },
+  
 })
