@@ -1,33 +1,20 @@
-import {
-  HeadContent,
-  Link,
-  Outlet,
-  Scripts,
-  createRootRoute,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { createServerFn } from '@tanstack/react-start'
-import * as React from 'react'
-import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary'
-import { NotFound } from '../components/NotFound'
-import appCss from '../styles/app.css?url'
-import { seo } from '../utils/seo'
-import { getSupabaseServerClient } from '../utils/supabase'
+import * as React from 'react';
+import type { QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-const fetchUser = createServerFn({ method: 'GET' }).handler(async () => {
-  const supabase = await getSupabaseServerClient()
-  const { data, error: _error } = await supabase.auth.getUser()
+import { DefaultCatchBoundary } from '../components/default-catch-boundary';
+import { NotFound } from '../components/not-found';
+import { ThemeProvider } from '../components/theme-provider';
+import appCss from '../styles/app.css?url';
+import { Toaster } from '@/components/ui/sonner';
+import { userWithRolesQueryOptions } from '@/utils/supabase/fetch-user-roles-server-fn';
 
-  if (!data.user?.email) {
-    return null
-  }
-
-  return {
-    email: data.user.email,
-  }
-})
-
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+  user?: { email: string; id: string; roles: string[] } | null;
+}>()({
   head: () => ({
     meta: [
       {
@@ -37,11 +24,6 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      ...seo({
-        title:
-          'TanStack Start | Type-Safe, Client-First, Full-Stack React Framework',
-        description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
-      }),
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
@@ -65,12 +47,25 @@ export const Route = createRootRoute({
       { rel: 'manifest', href: '/site.webmanifest', color: '#fffff' },
       { rel: 'icon', href: '/favicon.ico' },
     ],
+    scripts: [
+      {
+        id: 'theme-initializer',
+        children: `\n(function() {\n  try {\n    var theme = localStorage.getItem('gradgo-ui-theme');\n    if (!theme || theme === 'system') {\n      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';\n    }\n    document.documentElement.classList.remove('light', 'dark');\n    document.documentElement.classList.add(theme);\n  } catch (e) {}\n})();\n`,
+      },
+    ],
   }),
-  beforeLoad: async () => {
-    const user = await fetchUser()
-
-    return {
-      user,
+  beforeLoad: async ({ context }) => {
+    try {
+      // Use the query client to ensure the user data is cached
+      const user = await context.queryClient.ensureQueryData(userWithRolesQueryOptions());
+      return {
+        user,
+      };
+    } catch (error) {
+      console.error('[RootRoute] Error fetching user:', error);
+      return {
+        user: null,
+      };
     }
   },
   errorComponent: (props) => {
@@ -78,63 +73,47 @@ export const Route = createRootRoute({
       <RootDocument>
         <DefaultCatchBoundary {...props} />
       </RootDocument>
-    )
+    );
   },
   notFoundComponent: () => <NotFound />,
   component: RootComponent,
-})
+});
 
 function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
     </RootDocument>
-  )
+  );
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const { user } = Route.useRouteContext()
-
   return (
-    <html>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
-        <div className="p-2 flex gap-2 text-lg">
-          <Link
-            to="/"
-            activeProps={{
-              className: 'font-bold',
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>{' '}
-          <Link
-            to="/posts"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Posts
-          </Link>
-          <div className="ml-auto">
-            {user ? (
-              <>
-                <span className="mr-2">{user.email}</span>
-                <Link to="/logout">Logout</Link>
-              </>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </div>
-        </div>
-        <hr />
-        {children}
-        <TanStackRouterDevtools position="bottom-right" />
+      <body className="font-dm-sans bg-background">
+        <ThemeProvider defaultTheme="dark">{children}</ThemeProvider>
         <Scripts />
+        <Toaster />
+        {/* Devtools are rendered after Scripts to ensure they're only mounted client-side */}
+        <ClientOnly>
+          <TanStackRouterDevtools position="bottom-right" />
+          <ReactQueryDevtools buttonPosition="bottom-left" />
+        </ClientOnly>
       </body>
     </html>
-  )
+  );
+}
+
+// Client-only component to prevent server-side rendering of children
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return mounted ? <>{children}</> : null;
 }

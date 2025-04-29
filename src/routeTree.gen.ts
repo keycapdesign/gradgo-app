@@ -11,20 +11,70 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as SignupImport } from './routes/signup'
+import { Route as UpdatePasswordImport } from './routes/update-password'
+import { Route as UnauthorizedImport } from './routes/unauthorized'
+import { Route as SignUpSuccessImport } from './routes/sign-up-success'
+import { Route as SignUpImport } from './routes/sign-up'
 import { Route as LogoutImport } from './routes/logout'
 import { Route as LoginImport } from './routes/login'
-import { Route as AuthedImport } from './routes/_authed'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthedPostsImport } from './routes/_authed/posts'
-import { Route as AuthedPostsIndexImport } from './routes/_authed/posts.index'
-import { Route as AuthedPostsPostIdImport } from './routes/_authed/posts.$postId'
+import { Route as ForgotPasswordImport } from './routes/forgot-password'
+import { Route as CompleteSignupImport } from './routes/complete-signup'
+import { Route as ProtectedImport } from './routes/_protected'
+import { Route as CheckoutSuccessImport } from './routes/checkout/success'
+import { Route as ProtectedKioskRouteImport } from './routes/_protected/kiosk/route'
+import { Route as ProtectedAdminRouteImport } from './routes/_protected/admin/route'
+import { Route as ProtectedStudentRouteImport } from './routes/_protected/_student/route'
+import { Route as ProtectedAdminIndexImport } from './routes/_protected/admin/index'
+import { Route as ProtectedStudentIndexImport } from './routes/_protected/_student/index'
+import { Route as PublicGalleryContactIdImport } from './routes/public/gallery/$contactId'
+import { Route as ProtectedKioskReturnsImport } from './routes/_protected/kiosk/returns'
+import { Route as ProtectedKioskGalleryImport } from './routes/_protected/kiosk/gallery'
+import { Route as ProtectedAdminSettingsRouteImport } from './routes/_protected/admin/settings/route'
+import { Route as ProtectedAdminStageQueueIndexImport } from './routes/_protected/admin/stage-queue/index'
+import { Route as ProtectedAdminSettingsIndexImport } from './routes/_protected/admin/settings/index'
+import { Route as ProtectedAdminOffersIndexImport } from './routes/_protected/admin/offers/index'
+import { Route as ProtectedAdminGownsIndexImport } from './routes/_protected/admin/gowns/index'
+import { Route as ProtectedAdminFeaturesIndexImport } from './routes/_protected/admin/features/index'
+import { Route as ProtectedAdminEventsIndexImport } from './routes/_protected/admin/events/index'
+import { Route as ProtectedAdminEventManagerIndexImport } from './routes/_protected/admin/event-manager/index'
+import { Route as ProtectedAdminContactsIndexImport } from './routes/_protected/admin/contacts/index'
+import { Route as ProtectedAdminAnalyticsIndexImport } from './routes/_protected/admin/analytics/index'
+import { Route as ProtectedStudentScheduleIndexImport } from './routes/_protected/_student/schedule/index'
+import { Route as ProtectedStudentProfileIndexImport } from './routes/_protected/_student/profile/index'
+import { Route as ProtectedStudentOffersIndexImport } from './routes/_protected/_student/offers/index'
+import { Route as ProtectedStudentGalleryIndexImport } from './routes/_protected/_student/gallery/index'
+import { Route as ProtectedStudentBookingIndexImport } from './routes/_protected/_student/booking/index'
+import { Route as ProtectedAdminOffersOfferIdImport } from './routes/_protected/admin/offers/$offerId'
+import { Route as ProtectedAdminFeaturesFeatureIdImport } from './routes/_protected/admin/features/$featureId'
+import { Route as ProtectedAdminEventsEventIdImport } from './routes/_protected/admin/events/$eventId'
+import { Route as ProtectedAdminContactsContactIdImport } from './routes/_protected/admin/contacts/$contactId'
+import { Route as ProtectedStudentSettingsIndexDisabledImport } from './routes/_protected/_student/settings/index.disabled'
+import { Route as ProtectedStudentSettingsIndexBackupImport } from './routes/_protected/_student/settings/index.backup'
+import { Route as ProtectedAdminEventsEventIdGownSchemasImport } from './routes/_protected/admin/events/$eventId/gown-schemas'
 
 // Create/Update Routes
 
-const SignupRoute = SignupImport.update({
-  id: '/signup',
-  path: '/signup',
+const UpdatePasswordRoute = UpdatePasswordImport.update({
+  id: '/update-password',
+  path: '/update-password',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const UnauthorizedRoute = UnauthorizedImport.update({
+  id: '/unauthorized',
+  path: '/unauthorized',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignUpSuccessRoute = SignUpSuccessImport.update({
+  id: '/sign-up-success',
+  path: '/sign-up-success',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignUpRoute = SignUpImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -40,51 +90,250 @@ const LoginRoute = LoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthedRoute = AuthedImport.update({
-  id: '/_authed',
+const ForgotPasswordRoute = ForgotPasswordImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+const CompleteSignupRoute = CompleteSignupImport.update({
+  id: '/complete-signup',
+  path: '/complete-signup',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthedPostsRoute = AuthedPostsImport.update({
-  id: '/posts',
-  path: '/posts',
-  getParentRoute: () => AuthedRoute,
+const ProtectedRoute = ProtectedImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRoute,
 } as any)
 
-const AuthedPostsIndexRoute = AuthedPostsIndexImport.update({
+const CheckoutSuccessRoute = CheckoutSuccessImport.update({
+  id: '/checkout/success',
+  path: '/checkout/success',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProtectedKioskRouteRoute = ProtectedKioskRouteImport.update({
+  id: '/kiosk',
+  path: '/kiosk',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedAdminRouteRoute = ProtectedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedStudentRouteRoute = ProtectedStudentRouteImport.update({
+  id: '/_student',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedAdminIndexRoute = ProtectedAdminIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthedPostsRoute,
+  getParentRoute: () => ProtectedAdminRouteRoute,
 } as any)
 
-const AuthedPostsPostIdRoute = AuthedPostsPostIdImport.update({
-  id: '/$postId',
-  path: '/$postId',
-  getParentRoute: () => AuthedPostsRoute,
+const ProtectedStudentIndexRoute = ProtectedStudentIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProtectedStudentRouteRoute,
 } as any)
+
+const PublicGalleryContactIdRoute = PublicGalleryContactIdImport.update({
+  id: '/public/gallery/$contactId',
+  path: '/public/gallery/$contactId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProtectedKioskReturnsRoute = ProtectedKioskReturnsImport.update({
+  id: '/returns',
+  path: '/returns',
+  getParentRoute: () => ProtectedKioskRouteRoute,
+} as any)
+
+const ProtectedKioskGalleryRoute = ProtectedKioskGalleryImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => ProtectedKioskRouteRoute,
+} as any)
+
+const ProtectedAdminSettingsRouteRoute =
+  ProtectedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminStageQueueIndexRoute =
+  ProtectedAdminStageQueueIndexImport.update({
+    id: '/stage-queue/',
+    path: '/stage-queue/',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminSettingsIndexRoute =
+  ProtectedAdminSettingsIndexImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedAdminSettingsRouteRoute,
+  } as any)
+
+const ProtectedAdminOffersIndexRoute = ProtectedAdminOffersIndexImport.update({
+  id: '/offers/',
+  path: '/offers/',
+  getParentRoute: () => ProtectedAdminRouteRoute,
+} as any)
+
+const ProtectedAdminGownsIndexRoute = ProtectedAdminGownsIndexImport.update({
+  id: '/gowns/',
+  path: '/gowns/',
+  getParentRoute: () => ProtectedAdminRouteRoute,
+} as any)
+
+const ProtectedAdminFeaturesIndexRoute =
+  ProtectedAdminFeaturesIndexImport.update({
+    id: '/features/',
+    path: '/features/',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminEventsIndexRoute = ProtectedAdminEventsIndexImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => ProtectedAdminRouteRoute,
+} as any)
+
+const ProtectedAdminEventManagerIndexRoute =
+  ProtectedAdminEventManagerIndexImport.update({
+    id: '/event-manager/',
+    path: '/event-manager/',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminContactsIndexRoute =
+  ProtectedAdminContactsIndexImport.update({
+    id: '/contacts/',
+    path: '/contacts/',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminAnalyticsIndexRoute =
+  ProtectedAdminAnalyticsIndexImport.update({
+    id: '/analytics/',
+    path: '/analytics/',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedStudentScheduleIndexRoute =
+  ProtectedStudentScheduleIndexImport.update({
+    id: '/schedule/',
+    path: '/schedule/',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedStudentProfileIndexRoute =
+  ProtectedStudentProfileIndexImport.update({
+    id: '/profile/',
+    path: '/profile/',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedStudentOffersIndexRoute =
+  ProtectedStudentOffersIndexImport.update({
+    id: '/offers/',
+    path: '/offers/',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedStudentGalleryIndexRoute =
+  ProtectedStudentGalleryIndexImport.update({
+    id: '/gallery/',
+    path: '/gallery/',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedStudentBookingIndexRoute =
+  ProtectedStudentBookingIndexImport.update({
+    id: '/booking/',
+    path: '/booking/',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedAdminOffersOfferIdRoute =
+  ProtectedAdminOffersOfferIdImport.update({
+    id: '/offers/$offerId',
+    path: '/offers/$offerId',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminFeaturesFeatureIdRoute =
+  ProtectedAdminFeaturesFeatureIdImport.update({
+    id: '/features/$featureId',
+    path: '/features/$featureId',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminEventsEventIdRoute =
+  ProtectedAdminEventsEventIdImport.update({
+    id: '/events/$eventId',
+    path: '/events/$eventId',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedAdminContactsContactIdRoute =
+  ProtectedAdminContactsContactIdImport.update({
+    id: '/contacts/$contactId',
+    path: '/contacts/$contactId',
+    getParentRoute: () => ProtectedAdminRouteRoute,
+  } as any)
+
+const ProtectedStudentSettingsIndexDisabledRoute =
+  ProtectedStudentSettingsIndexDisabledImport.update({
+    id: '/settings/index/disabled',
+    path: '/settings/index/disabled',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedStudentSettingsIndexBackupRoute =
+  ProtectedStudentSettingsIndexBackupImport.update({
+    id: '/settings/index/backup',
+    path: '/settings/index/backup',
+    getParentRoute: () => ProtectedStudentRouteRoute,
+  } as any)
+
+const ProtectedAdminEventsEventIdGownSchemasRoute =
+  ProtectedAdminEventsEventIdGownSchemasImport.update({
+    id: '/gown-schemas',
+    path: '/gown-schemas',
+    getParentRoute: () => ProtectedAdminEventsEventIdRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authed': {
-      id: '/_authed'
+    '/_protected': {
+      id: '/_protected'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthedImport
+      preLoaderRoute: typeof ProtectedImport
+      parentRoute: typeof rootRoute
+    }
+    '/complete-signup': {
+      id: '/complete-signup'
+      path: '/complete-signup'
+      fullPath: '/complete-signup'
+      preLoaderRoute: typeof CompleteSignupImport
+      parentRoute: typeof rootRoute
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -101,137 +350,660 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogoutImport
       parentRoute: typeof rootRoute
     }
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupImport
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
-    '/_authed/posts': {
-      id: '/_authed/posts'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof AuthedPostsImport
-      parentRoute: typeof AuthedImport
+    '/sign-up-success': {
+      id: '/sign-up-success'
+      path: '/sign-up-success'
+      fullPath: '/sign-up-success'
+      preLoaderRoute: typeof SignUpSuccessImport
+      parentRoute: typeof rootRoute
     }
-    '/_authed/posts/$postId': {
-      id: '/_authed/posts/$postId'
-      path: '/$postId'
-      fullPath: '/posts/$postId'
-      preLoaderRoute: typeof AuthedPostsPostIdImport
-      parentRoute: typeof AuthedPostsImport
+    '/unauthorized': {
+      id: '/unauthorized'
+      path: '/unauthorized'
+      fullPath: '/unauthorized'
+      preLoaderRoute: typeof UnauthorizedImport
+      parentRoute: typeof rootRoute
     }
-    '/_authed/posts/': {
-      id: '/_authed/posts/'
+    '/update-password': {
+      id: '/update-password'
+      path: '/update-password'
+      fullPath: '/update-password'
+      preLoaderRoute: typeof UpdatePasswordImport
+      parentRoute: typeof rootRoute
+    }
+    '/_protected/_student': {
+      id: '/_protected/_student'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedStudentRouteImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/admin': {
+      id: '/_protected/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof ProtectedAdminRouteImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/kiosk': {
+      id: '/_protected/kiosk'
+      path: '/kiosk'
+      fullPath: '/kiosk'
+      preLoaderRoute: typeof ProtectedKioskRouteImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/checkout/success': {
+      id: '/checkout/success'
+      path: '/checkout/success'
+      fullPath: '/checkout/success'
+      preLoaderRoute: typeof CheckoutSuccessImport
+      parentRoute: typeof rootRoute
+    }
+    '/_protected/admin/settings': {
+      id: '/_protected/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof ProtectedAdminSettingsRouteImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/kiosk/gallery': {
+      id: '/_protected/kiosk/gallery'
+      path: '/gallery'
+      fullPath: '/kiosk/gallery'
+      preLoaderRoute: typeof ProtectedKioskGalleryImport
+      parentRoute: typeof ProtectedKioskRouteImport
+    }
+    '/_protected/kiosk/returns': {
+      id: '/_protected/kiosk/returns'
+      path: '/returns'
+      fullPath: '/kiosk/returns'
+      preLoaderRoute: typeof ProtectedKioskReturnsImport
+      parentRoute: typeof ProtectedKioskRouteImport
+    }
+    '/public/gallery/$contactId': {
+      id: '/public/gallery/$contactId'
+      path: '/public/gallery/$contactId'
+      fullPath: '/public/gallery/$contactId'
+      preLoaderRoute: typeof PublicGalleryContactIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/_protected/_student/': {
+      id: '/_protected/_student/'
       path: '/'
-      fullPath: '/posts/'
-      preLoaderRoute: typeof AuthedPostsIndexImport
-      parentRoute: typeof AuthedPostsImport
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedStudentIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/admin/': {
+      id: '/_protected/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof ProtectedAdminIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/contacts/$contactId': {
+      id: '/_protected/admin/contacts/$contactId'
+      path: '/contacts/$contactId'
+      fullPath: '/admin/contacts/$contactId'
+      preLoaderRoute: typeof ProtectedAdminContactsContactIdImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/events/$eventId': {
+      id: '/_protected/admin/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/admin/events/$eventId'
+      preLoaderRoute: typeof ProtectedAdminEventsEventIdImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/features/$featureId': {
+      id: '/_protected/admin/features/$featureId'
+      path: '/features/$featureId'
+      fullPath: '/admin/features/$featureId'
+      preLoaderRoute: typeof ProtectedAdminFeaturesFeatureIdImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/offers/$offerId': {
+      id: '/_protected/admin/offers/$offerId'
+      path: '/offers/$offerId'
+      fullPath: '/admin/offers/$offerId'
+      preLoaderRoute: typeof ProtectedAdminOffersOfferIdImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/_student/booking/': {
+      id: '/_protected/_student/booking/'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof ProtectedStudentBookingIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/_student/gallery/': {
+      id: '/_protected/_student/gallery/'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof ProtectedStudentGalleryIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/_student/offers/': {
+      id: '/_protected/_student/offers/'
+      path: '/offers'
+      fullPath: '/offers'
+      preLoaderRoute: typeof ProtectedStudentOffersIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/_student/profile/': {
+      id: '/_protected/_student/profile/'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProtectedStudentProfileIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/_student/schedule/': {
+      id: '/_protected/_student/schedule/'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ProtectedStudentScheduleIndexImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/admin/analytics/': {
+      id: '/_protected/admin/analytics/'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof ProtectedAdminAnalyticsIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/contacts/': {
+      id: '/_protected/admin/contacts/'
+      path: '/contacts'
+      fullPath: '/admin/contacts'
+      preLoaderRoute: typeof ProtectedAdminContactsIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/event-manager/': {
+      id: '/_protected/admin/event-manager/'
+      path: '/event-manager'
+      fullPath: '/admin/event-manager'
+      preLoaderRoute: typeof ProtectedAdminEventManagerIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/events/': {
+      id: '/_protected/admin/events/'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof ProtectedAdminEventsIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/features/': {
+      id: '/_protected/admin/features/'
+      path: '/features'
+      fullPath: '/admin/features'
+      preLoaderRoute: typeof ProtectedAdminFeaturesIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/gowns/': {
+      id: '/_protected/admin/gowns/'
+      path: '/gowns'
+      fullPath: '/admin/gowns'
+      preLoaderRoute: typeof ProtectedAdminGownsIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/offers/': {
+      id: '/_protected/admin/offers/'
+      path: '/offers'
+      fullPath: '/admin/offers'
+      preLoaderRoute: typeof ProtectedAdminOffersIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/settings/': {
+      id: '/_protected/admin/settings/'
+      path: '/'
+      fullPath: '/admin/settings/'
+      preLoaderRoute: typeof ProtectedAdminSettingsIndexImport
+      parentRoute: typeof ProtectedAdminSettingsRouteImport
+    }
+    '/_protected/admin/stage-queue/': {
+      id: '/_protected/admin/stage-queue/'
+      path: '/stage-queue'
+      fullPath: '/admin/stage-queue'
+      preLoaderRoute: typeof ProtectedAdminStageQueueIndexImport
+      parentRoute: typeof ProtectedAdminRouteImport
+    }
+    '/_protected/admin/events/$eventId/gown-schemas': {
+      id: '/_protected/admin/events/$eventId/gown-schemas'
+      path: '/gown-schemas'
+      fullPath: '/admin/events/$eventId/gown-schemas'
+      preLoaderRoute: typeof ProtectedAdminEventsEventIdGownSchemasImport
+      parentRoute: typeof ProtectedAdminEventsEventIdImport
+    }
+    '/_protected/_student/settings/index/backup': {
+      id: '/_protected/_student/settings/index/backup'
+      path: '/settings/index/backup'
+      fullPath: '/settings/index/backup'
+      preLoaderRoute: typeof ProtectedStudentSettingsIndexBackupImport
+      parentRoute: typeof ProtectedStudentRouteImport
+    }
+    '/_protected/_student/settings/index/disabled': {
+      id: '/_protected/_student/settings/index/disabled'
+      path: '/settings/index/disabled'
+      fullPath: '/settings/index/disabled'
+      preLoaderRoute: typeof ProtectedStudentSettingsIndexDisabledImport
+      parentRoute: typeof ProtectedStudentRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface AuthedPostsRouteChildren {
-  AuthedPostsPostIdRoute: typeof AuthedPostsPostIdRoute
-  AuthedPostsIndexRoute: typeof AuthedPostsIndexRoute
+interface ProtectedStudentRouteRouteChildren {
+  ProtectedStudentIndexRoute: typeof ProtectedStudentIndexRoute
+  ProtectedStudentBookingIndexRoute: typeof ProtectedStudentBookingIndexRoute
+  ProtectedStudentGalleryIndexRoute: typeof ProtectedStudentGalleryIndexRoute
+  ProtectedStudentOffersIndexRoute: typeof ProtectedStudentOffersIndexRoute
+  ProtectedStudentProfileIndexRoute: typeof ProtectedStudentProfileIndexRoute
+  ProtectedStudentScheduleIndexRoute: typeof ProtectedStudentScheduleIndexRoute
+  ProtectedStudentSettingsIndexBackupRoute: typeof ProtectedStudentSettingsIndexBackupRoute
+  ProtectedStudentSettingsIndexDisabledRoute: typeof ProtectedStudentSettingsIndexDisabledRoute
 }
 
-const AuthedPostsRouteChildren: AuthedPostsRouteChildren = {
-  AuthedPostsPostIdRoute: AuthedPostsPostIdRoute,
-  AuthedPostsIndexRoute: AuthedPostsIndexRoute,
+const ProtectedStudentRouteRouteChildren: ProtectedStudentRouteRouteChildren = {
+  ProtectedStudentIndexRoute: ProtectedStudentIndexRoute,
+  ProtectedStudentBookingIndexRoute: ProtectedStudentBookingIndexRoute,
+  ProtectedStudentGalleryIndexRoute: ProtectedStudentGalleryIndexRoute,
+  ProtectedStudentOffersIndexRoute: ProtectedStudentOffersIndexRoute,
+  ProtectedStudentProfileIndexRoute: ProtectedStudentProfileIndexRoute,
+  ProtectedStudentScheduleIndexRoute: ProtectedStudentScheduleIndexRoute,
+  ProtectedStudentSettingsIndexBackupRoute:
+    ProtectedStudentSettingsIndexBackupRoute,
+  ProtectedStudentSettingsIndexDisabledRoute:
+    ProtectedStudentSettingsIndexDisabledRoute,
 }
 
-const AuthedPostsRouteWithChildren = AuthedPostsRoute._addFileChildren(
-  AuthedPostsRouteChildren,
+const ProtectedStudentRouteRouteWithChildren =
+  ProtectedStudentRouteRoute._addFileChildren(
+    ProtectedStudentRouteRouteChildren,
+  )
+
+interface ProtectedAdminSettingsRouteRouteChildren {
+  ProtectedAdminSettingsIndexRoute: typeof ProtectedAdminSettingsIndexRoute
+}
+
+const ProtectedAdminSettingsRouteRouteChildren: ProtectedAdminSettingsRouteRouteChildren =
+  {
+    ProtectedAdminSettingsIndexRoute: ProtectedAdminSettingsIndexRoute,
+  }
+
+const ProtectedAdminSettingsRouteRouteWithChildren =
+  ProtectedAdminSettingsRouteRoute._addFileChildren(
+    ProtectedAdminSettingsRouteRouteChildren,
+  )
+
+interface ProtectedAdminEventsEventIdRouteChildren {
+  ProtectedAdminEventsEventIdGownSchemasRoute: typeof ProtectedAdminEventsEventIdGownSchemasRoute
+}
+
+const ProtectedAdminEventsEventIdRouteChildren: ProtectedAdminEventsEventIdRouteChildren =
+  {
+    ProtectedAdminEventsEventIdGownSchemasRoute:
+      ProtectedAdminEventsEventIdGownSchemasRoute,
+  }
+
+const ProtectedAdminEventsEventIdRouteWithChildren =
+  ProtectedAdminEventsEventIdRoute._addFileChildren(
+    ProtectedAdminEventsEventIdRouteChildren,
+  )
+
+interface ProtectedAdminRouteRouteChildren {
+  ProtectedAdminSettingsRouteRoute: typeof ProtectedAdminSettingsRouteRouteWithChildren
+  ProtectedAdminIndexRoute: typeof ProtectedAdminIndexRoute
+  ProtectedAdminContactsContactIdRoute: typeof ProtectedAdminContactsContactIdRoute
+  ProtectedAdminEventsEventIdRoute: typeof ProtectedAdminEventsEventIdRouteWithChildren
+  ProtectedAdminFeaturesFeatureIdRoute: typeof ProtectedAdminFeaturesFeatureIdRoute
+  ProtectedAdminOffersOfferIdRoute: typeof ProtectedAdminOffersOfferIdRoute
+  ProtectedAdminAnalyticsIndexRoute: typeof ProtectedAdminAnalyticsIndexRoute
+  ProtectedAdminContactsIndexRoute: typeof ProtectedAdminContactsIndexRoute
+  ProtectedAdminEventManagerIndexRoute: typeof ProtectedAdminEventManagerIndexRoute
+  ProtectedAdminEventsIndexRoute: typeof ProtectedAdminEventsIndexRoute
+  ProtectedAdminFeaturesIndexRoute: typeof ProtectedAdminFeaturesIndexRoute
+  ProtectedAdminGownsIndexRoute: typeof ProtectedAdminGownsIndexRoute
+  ProtectedAdminOffersIndexRoute: typeof ProtectedAdminOffersIndexRoute
+  ProtectedAdminStageQueueIndexRoute: typeof ProtectedAdminStageQueueIndexRoute
+}
+
+const ProtectedAdminRouteRouteChildren: ProtectedAdminRouteRouteChildren = {
+  ProtectedAdminSettingsRouteRoute:
+    ProtectedAdminSettingsRouteRouteWithChildren,
+  ProtectedAdminIndexRoute: ProtectedAdminIndexRoute,
+  ProtectedAdminContactsContactIdRoute: ProtectedAdminContactsContactIdRoute,
+  ProtectedAdminEventsEventIdRoute:
+    ProtectedAdminEventsEventIdRouteWithChildren,
+  ProtectedAdminFeaturesFeatureIdRoute: ProtectedAdminFeaturesFeatureIdRoute,
+  ProtectedAdminOffersOfferIdRoute: ProtectedAdminOffersOfferIdRoute,
+  ProtectedAdminAnalyticsIndexRoute: ProtectedAdminAnalyticsIndexRoute,
+  ProtectedAdminContactsIndexRoute: ProtectedAdminContactsIndexRoute,
+  ProtectedAdminEventManagerIndexRoute: ProtectedAdminEventManagerIndexRoute,
+  ProtectedAdminEventsIndexRoute: ProtectedAdminEventsIndexRoute,
+  ProtectedAdminFeaturesIndexRoute: ProtectedAdminFeaturesIndexRoute,
+  ProtectedAdminGownsIndexRoute: ProtectedAdminGownsIndexRoute,
+  ProtectedAdminOffersIndexRoute: ProtectedAdminOffersIndexRoute,
+  ProtectedAdminStageQueueIndexRoute: ProtectedAdminStageQueueIndexRoute,
+}
+
+const ProtectedAdminRouteRouteWithChildren =
+  ProtectedAdminRouteRoute._addFileChildren(ProtectedAdminRouteRouteChildren)
+
+interface ProtectedKioskRouteRouteChildren {
+  ProtectedKioskGalleryRoute: typeof ProtectedKioskGalleryRoute
+  ProtectedKioskReturnsRoute: typeof ProtectedKioskReturnsRoute
+}
+
+const ProtectedKioskRouteRouteChildren: ProtectedKioskRouteRouteChildren = {
+  ProtectedKioskGalleryRoute: ProtectedKioskGalleryRoute,
+  ProtectedKioskReturnsRoute: ProtectedKioskReturnsRoute,
+}
+
+const ProtectedKioskRouteRouteWithChildren =
+  ProtectedKioskRouteRoute._addFileChildren(ProtectedKioskRouteRouteChildren)
+
+interface ProtectedRouteChildren {
+  ProtectedStudentRouteRoute: typeof ProtectedStudentRouteRouteWithChildren
+  ProtectedAdminRouteRoute: typeof ProtectedAdminRouteRouteWithChildren
+  ProtectedKioskRouteRoute: typeof ProtectedKioskRouteRouteWithChildren
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedStudentRouteRoute: ProtectedStudentRouteRouteWithChildren,
+  ProtectedAdminRouteRoute: ProtectedAdminRouteRouteWithChildren,
+  ProtectedKioskRouteRoute: ProtectedKioskRouteRouteWithChildren,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
 )
 
-interface AuthedRouteChildren {
-  AuthedPostsRoute: typeof AuthedPostsRouteWithChildren
-}
-
-const AuthedRouteChildren: AuthedRouteChildren = {
-  AuthedPostsRoute: AuthedPostsRouteWithChildren,
-}
-
-const AuthedRouteWithChildren =
-  AuthedRoute._addFileChildren(AuthedRouteChildren)
-
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '': typeof AuthedRouteWithChildren
+  '': typeof ProtectedStudentRouteRouteWithChildren
+  '/complete-signup': typeof CompleteSignupRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
-  '/signup': typeof SignupRoute
-  '/posts': typeof AuthedPostsRouteWithChildren
-  '/posts/$postId': typeof AuthedPostsPostIdRoute
-  '/posts/': typeof AuthedPostsIndexRoute
+  '/sign-up': typeof SignUpRoute
+  '/sign-up-success': typeof SignUpSuccessRoute
+  '/unauthorized': typeof UnauthorizedRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/admin': typeof ProtectedAdminRouteRouteWithChildren
+  '/kiosk': typeof ProtectedKioskRouteRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/admin/settings': typeof ProtectedAdminSettingsRouteRouteWithChildren
+  '/kiosk/gallery': typeof ProtectedKioskGalleryRoute
+  '/kiosk/returns': typeof ProtectedKioskReturnsRoute
+  '/public/gallery/$contactId': typeof PublicGalleryContactIdRoute
+  '/': typeof ProtectedStudentIndexRoute
+  '/admin/': typeof ProtectedAdminIndexRoute
+  '/admin/contacts/$contactId': typeof ProtectedAdminContactsContactIdRoute
+  '/admin/events/$eventId': typeof ProtectedAdminEventsEventIdRouteWithChildren
+  '/admin/features/$featureId': typeof ProtectedAdminFeaturesFeatureIdRoute
+  '/admin/offers/$offerId': typeof ProtectedAdminOffersOfferIdRoute
+  '/booking': typeof ProtectedStudentBookingIndexRoute
+  '/gallery': typeof ProtectedStudentGalleryIndexRoute
+  '/offers': typeof ProtectedStudentOffersIndexRoute
+  '/profile': typeof ProtectedStudentProfileIndexRoute
+  '/schedule': typeof ProtectedStudentScheduleIndexRoute
+  '/admin/analytics': typeof ProtectedAdminAnalyticsIndexRoute
+  '/admin/contacts': typeof ProtectedAdminContactsIndexRoute
+  '/admin/event-manager': typeof ProtectedAdminEventManagerIndexRoute
+  '/admin/events': typeof ProtectedAdminEventsIndexRoute
+  '/admin/features': typeof ProtectedAdminFeaturesIndexRoute
+  '/admin/gowns': typeof ProtectedAdminGownsIndexRoute
+  '/admin/offers': typeof ProtectedAdminOffersIndexRoute
+  '/admin/settings/': typeof ProtectedAdminSettingsIndexRoute
+  '/admin/stage-queue': typeof ProtectedAdminStageQueueIndexRoute
+  '/admin/events/$eventId/gown-schemas': typeof ProtectedAdminEventsEventIdGownSchemasRoute
+  '/settings/index/backup': typeof ProtectedStudentSettingsIndexBackupRoute
+  '/settings/index/disabled': typeof ProtectedStudentSettingsIndexDisabledRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '': typeof AuthedRouteWithChildren
+  '': typeof ProtectedRouteWithChildren
+  '/complete-signup': typeof CompleteSignupRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
-  '/signup': typeof SignupRoute
-  '/posts/$postId': typeof AuthedPostsPostIdRoute
-  '/posts': typeof AuthedPostsIndexRoute
+  '/sign-up': typeof SignUpRoute
+  '/sign-up-success': typeof SignUpSuccessRoute
+  '/unauthorized': typeof UnauthorizedRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/kiosk': typeof ProtectedKioskRouteRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/kiosk/gallery': typeof ProtectedKioskGalleryRoute
+  '/kiosk/returns': typeof ProtectedKioskReturnsRoute
+  '/public/gallery/$contactId': typeof PublicGalleryContactIdRoute
+  '/': typeof ProtectedStudentIndexRoute
+  '/admin': typeof ProtectedAdminIndexRoute
+  '/admin/contacts/$contactId': typeof ProtectedAdminContactsContactIdRoute
+  '/admin/events/$eventId': typeof ProtectedAdminEventsEventIdRouteWithChildren
+  '/admin/features/$featureId': typeof ProtectedAdminFeaturesFeatureIdRoute
+  '/admin/offers/$offerId': typeof ProtectedAdminOffersOfferIdRoute
+  '/booking': typeof ProtectedStudentBookingIndexRoute
+  '/gallery': typeof ProtectedStudentGalleryIndexRoute
+  '/offers': typeof ProtectedStudentOffersIndexRoute
+  '/profile': typeof ProtectedStudentProfileIndexRoute
+  '/schedule': typeof ProtectedStudentScheduleIndexRoute
+  '/admin/analytics': typeof ProtectedAdminAnalyticsIndexRoute
+  '/admin/contacts': typeof ProtectedAdminContactsIndexRoute
+  '/admin/event-manager': typeof ProtectedAdminEventManagerIndexRoute
+  '/admin/events': typeof ProtectedAdminEventsIndexRoute
+  '/admin/features': typeof ProtectedAdminFeaturesIndexRoute
+  '/admin/gowns': typeof ProtectedAdminGownsIndexRoute
+  '/admin/offers': typeof ProtectedAdminOffersIndexRoute
+  '/admin/settings': typeof ProtectedAdminSettingsIndexRoute
+  '/admin/stage-queue': typeof ProtectedAdminStageQueueIndexRoute
+  '/admin/events/$eventId/gown-schemas': typeof ProtectedAdminEventsEventIdGownSchemasRoute
+  '/settings/index/backup': typeof ProtectedStudentSettingsIndexBackupRoute
+  '/settings/index/disabled': typeof ProtectedStudentSettingsIndexDisabledRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/_authed': typeof AuthedRouteWithChildren
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/complete-signup': typeof CompleteSignupRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
-  '/signup': typeof SignupRoute
-  '/_authed/posts': typeof AuthedPostsRouteWithChildren
-  '/_authed/posts/$postId': typeof AuthedPostsPostIdRoute
-  '/_authed/posts/': typeof AuthedPostsIndexRoute
+  '/sign-up': typeof SignUpRoute
+  '/sign-up-success': typeof SignUpSuccessRoute
+  '/unauthorized': typeof UnauthorizedRoute
+  '/update-password': typeof UpdatePasswordRoute
+  '/_protected/_student': typeof ProtectedStudentRouteRouteWithChildren
+  '/_protected/admin': typeof ProtectedAdminRouteRouteWithChildren
+  '/_protected/kiosk': typeof ProtectedKioskRouteRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/_protected/admin/settings': typeof ProtectedAdminSettingsRouteRouteWithChildren
+  '/_protected/kiosk/gallery': typeof ProtectedKioskGalleryRoute
+  '/_protected/kiosk/returns': typeof ProtectedKioskReturnsRoute
+  '/public/gallery/$contactId': typeof PublicGalleryContactIdRoute
+  '/_protected/_student/': typeof ProtectedStudentIndexRoute
+  '/_protected/admin/': typeof ProtectedAdminIndexRoute
+  '/_protected/admin/contacts/$contactId': typeof ProtectedAdminContactsContactIdRoute
+  '/_protected/admin/events/$eventId': typeof ProtectedAdminEventsEventIdRouteWithChildren
+  '/_protected/admin/features/$featureId': typeof ProtectedAdminFeaturesFeatureIdRoute
+  '/_protected/admin/offers/$offerId': typeof ProtectedAdminOffersOfferIdRoute
+  '/_protected/_student/booking/': typeof ProtectedStudentBookingIndexRoute
+  '/_protected/_student/gallery/': typeof ProtectedStudentGalleryIndexRoute
+  '/_protected/_student/offers/': typeof ProtectedStudentOffersIndexRoute
+  '/_protected/_student/profile/': typeof ProtectedStudentProfileIndexRoute
+  '/_protected/_student/schedule/': typeof ProtectedStudentScheduleIndexRoute
+  '/_protected/admin/analytics/': typeof ProtectedAdminAnalyticsIndexRoute
+  '/_protected/admin/contacts/': typeof ProtectedAdminContactsIndexRoute
+  '/_protected/admin/event-manager/': typeof ProtectedAdminEventManagerIndexRoute
+  '/_protected/admin/events/': typeof ProtectedAdminEventsIndexRoute
+  '/_protected/admin/features/': typeof ProtectedAdminFeaturesIndexRoute
+  '/_protected/admin/gowns/': typeof ProtectedAdminGownsIndexRoute
+  '/_protected/admin/offers/': typeof ProtectedAdminOffersIndexRoute
+  '/_protected/admin/settings/': typeof ProtectedAdminSettingsIndexRoute
+  '/_protected/admin/stage-queue/': typeof ProtectedAdminStageQueueIndexRoute
+  '/_protected/admin/events/$eventId/gown-schemas': typeof ProtectedAdminEventsEventIdGownSchemasRoute
+  '/_protected/_student/settings/index/backup': typeof ProtectedStudentSettingsIndexBackupRoute
+  '/_protected/_student/settings/index/disabled': typeof ProtectedStudentSettingsIndexDisabledRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | ''
+    | '/complete-signup'
+    | '/forgot-password'
     | '/login'
     | '/logout'
-    | '/signup'
-    | '/posts'
-    | '/posts/$postId'
-    | '/posts/'
+    | '/sign-up'
+    | '/sign-up-success'
+    | '/unauthorized'
+    | '/update-password'
+    | '/admin'
+    | '/kiosk'
+    | '/checkout/success'
+    | '/admin/settings'
+    | '/kiosk/gallery'
+    | '/kiosk/returns'
+    | '/public/gallery/$contactId'
+    | '/'
+    | '/admin/'
+    | '/admin/contacts/$contactId'
+    | '/admin/events/$eventId'
+    | '/admin/features/$featureId'
+    | '/admin/offers/$offerId'
+    | '/booking'
+    | '/gallery'
+    | '/offers'
+    | '/profile'
+    | '/schedule'
+    | '/admin/analytics'
+    | '/admin/contacts'
+    | '/admin/event-manager'
+    | '/admin/events'
+    | '/admin/features'
+    | '/admin/gowns'
+    | '/admin/offers'
+    | '/admin/settings/'
+    | '/admin/stage-queue'
+    | '/admin/events/$eventId/gown-schemas'
+    | '/settings/index/backup'
+    | '/settings/index/disabled'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/login' | '/logout' | '/signup' | '/posts/$postId' | '/posts'
+  to:
+    | ''
+    | '/complete-signup'
+    | '/forgot-password'
+    | '/login'
+    | '/logout'
+    | '/sign-up'
+    | '/sign-up-success'
+    | '/unauthorized'
+    | '/update-password'
+    | '/kiosk'
+    | '/checkout/success'
+    | '/kiosk/gallery'
+    | '/kiosk/returns'
+    | '/public/gallery/$contactId'
+    | '/'
+    | '/admin'
+    | '/admin/contacts/$contactId'
+    | '/admin/events/$eventId'
+    | '/admin/features/$featureId'
+    | '/admin/offers/$offerId'
+    | '/booking'
+    | '/gallery'
+    | '/offers'
+    | '/profile'
+    | '/schedule'
+    | '/admin/analytics'
+    | '/admin/contacts'
+    | '/admin/event-manager'
+    | '/admin/events'
+    | '/admin/features'
+    | '/admin/gowns'
+    | '/admin/offers'
+    | '/admin/settings'
+    | '/admin/stage-queue'
+    | '/admin/events/$eventId/gown-schemas'
+    | '/settings/index/backup'
+    | '/settings/index/disabled'
   id:
     | '__root__'
-    | '/'
-    | '/_authed'
+    | '/_protected'
+    | '/complete-signup'
+    | '/forgot-password'
     | '/login'
     | '/logout'
-    | '/signup'
-    | '/_authed/posts'
-    | '/_authed/posts/$postId'
-    | '/_authed/posts/'
+    | '/sign-up'
+    | '/sign-up-success'
+    | '/unauthorized'
+    | '/update-password'
+    | '/_protected/_student'
+    | '/_protected/admin'
+    | '/_protected/kiosk'
+    | '/checkout/success'
+    | '/_protected/admin/settings'
+    | '/_protected/kiosk/gallery'
+    | '/_protected/kiosk/returns'
+    | '/public/gallery/$contactId'
+    | '/_protected/_student/'
+    | '/_protected/admin/'
+    | '/_protected/admin/contacts/$contactId'
+    | '/_protected/admin/events/$eventId'
+    | '/_protected/admin/features/$featureId'
+    | '/_protected/admin/offers/$offerId'
+    | '/_protected/_student/booking/'
+    | '/_protected/_student/gallery/'
+    | '/_protected/_student/offers/'
+    | '/_protected/_student/profile/'
+    | '/_protected/_student/schedule/'
+    | '/_protected/admin/analytics/'
+    | '/_protected/admin/contacts/'
+    | '/_protected/admin/event-manager/'
+    | '/_protected/admin/events/'
+    | '/_protected/admin/features/'
+    | '/_protected/admin/gowns/'
+    | '/_protected/admin/offers/'
+    | '/_protected/admin/settings/'
+    | '/_protected/admin/stage-queue/'
+    | '/_protected/admin/events/$eventId/gown-schemas'
+    | '/_protected/_student/settings/index/backup'
+    | '/_protected/_student/settings/index/disabled'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthedRoute: typeof AuthedRouteWithChildren
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  CompleteSignupRoute: typeof CompleteSignupRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
-  SignupRoute: typeof SignupRoute
+  SignUpRoute: typeof SignUpRoute
+  SignUpSuccessRoute: typeof SignUpSuccessRoute
+  UnauthorizedRoute: typeof UnauthorizedRoute
+  UpdatePasswordRoute: typeof UpdatePasswordRoute
+  CheckoutSuccessRoute: typeof CheckoutSuccessRoute
+  PublicGalleryContactIdRoute: typeof PublicGalleryContactIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AuthedRoute: AuthedRouteWithChildren,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  CompleteSignupRoute: CompleteSignupRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
-  SignupRoute: SignupRoute,
+  SignUpRoute: SignUpRoute,
+  SignUpSuccessRoute: SignUpSuccessRoute,
+  UnauthorizedRoute: UnauthorizedRoute,
+  UpdatePasswordRoute: UpdatePasswordRoute,
+  CheckoutSuccessRoute: CheckoutSuccessRoute,
+  PublicGalleryContactIdRoute: PublicGalleryContactIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -244,21 +1016,32 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/_authed",
+        "/_protected",
+        "/complete-signup",
+        "/forgot-password",
         "/login",
         "/logout",
-        "/signup"
+        "/sign-up",
+        "/sign-up-success",
+        "/unauthorized",
+        "/update-password",
+        "/checkout/success",
+        "/public/gallery/$contactId"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/_authed": {
-      "filePath": "_authed.tsx",
+    "/_protected": {
+      "filePath": "_protected.tsx",
       "children": [
-        "/_authed/posts"
+        "/_protected/_student",
+        "/_protected/admin",
+        "/_protected/kiosk"
       ]
+    },
+    "/complete-signup": {
+      "filePath": "complete-signup.tsx"
+    },
+    "/forgot-password": {
+      "filePath": "forgot-password.tsx"
     },
     "/login": {
       "filePath": "login.tsx"
@@ -266,24 +1049,175 @@ export const routeTree = rootRoute
     "/logout": {
       "filePath": "logout.tsx"
     },
-    "/signup": {
-      "filePath": "signup.tsx"
+    "/sign-up": {
+      "filePath": "sign-up.tsx"
     },
-    "/_authed/posts": {
-      "filePath": "_authed/posts.tsx",
-      "parent": "/_authed",
+    "/sign-up-success": {
+      "filePath": "sign-up-success.tsx"
+    },
+    "/unauthorized": {
+      "filePath": "unauthorized.tsx"
+    },
+    "/update-password": {
+      "filePath": "update-password.tsx"
+    },
+    "/_protected/_student": {
+      "filePath": "_protected/_student/route.tsx",
+      "parent": "/_protected",
       "children": [
-        "/_authed/posts/$postId",
-        "/_authed/posts/"
+        "/_protected/_student/",
+        "/_protected/_student/booking/",
+        "/_protected/_student/gallery/",
+        "/_protected/_student/offers/",
+        "/_protected/_student/profile/",
+        "/_protected/_student/schedule/",
+        "/_protected/_student/settings/index/backup",
+        "/_protected/_student/settings/index/disabled"
       ]
     },
-    "/_authed/posts/$postId": {
-      "filePath": "_authed/posts.$postId.tsx",
-      "parent": "/_authed/posts"
+    "/_protected/admin": {
+      "filePath": "_protected/admin/route.tsx",
+      "parent": "/_protected",
+      "children": [
+        "/_protected/admin/settings",
+        "/_protected/admin/",
+        "/_protected/admin/contacts/$contactId",
+        "/_protected/admin/events/$eventId",
+        "/_protected/admin/features/$featureId",
+        "/_protected/admin/offers/$offerId",
+        "/_protected/admin/analytics/",
+        "/_protected/admin/contacts/",
+        "/_protected/admin/event-manager/",
+        "/_protected/admin/events/",
+        "/_protected/admin/features/",
+        "/_protected/admin/gowns/",
+        "/_protected/admin/offers/",
+        "/_protected/admin/stage-queue/"
+      ]
     },
-    "/_authed/posts/": {
-      "filePath": "_authed/posts.index.tsx",
-      "parent": "/_authed/posts"
+    "/_protected/kiosk": {
+      "filePath": "_protected/kiosk/route.tsx",
+      "parent": "/_protected",
+      "children": [
+        "/_protected/kiosk/gallery",
+        "/_protected/kiosk/returns"
+      ]
+    },
+    "/checkout/success": {
+      "filePath": "checkout/success.tsx"
+    },
+    "/_protected/admin/settings": {
+      "filePath": "_protected/admin/settings/route.tsx",
+      "parent": "/_protected/admin",
+      "children": [
+        "/_protected/admin/settings/"
+      ]
+    },
+    "/_protected/kiosk/gallery": {
+      "filePath": "_protected/kiosk/gallery.tsx",
+      "parent": "/_protected/kiosk"
+    },
+    "/_protected/kiosk/returns": {
+      "filePath": "_protected/kiosk/returns.tsx",
+      "parent": "/_protected/kiosk"
+    },
+    "/public/gallery/$contactId": {
+      "filePath": "public/gallery/$contactId.tsx"
+    },
+    "/_protected/_student/": {
+      "filePath": "_protected/_student/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/admin/": {
+      "filePath": "_protected/admin/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/contacts/$contactId": {
+      "filePath": "_protected/admin/contacts/$contactId.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/events/$eventId": {
+      "filePath": "_protected/admin/events/$eventId.tsx",
+      "parent": "/_protected/admin",
+      "children": [
+        "/_protected/admin/events/$eventId/gown-schemas"
+      ]
+    },
+    "/_protected/admin/features/$featureId": {
+      "filePath": "_protected/admin/features/$featureId.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/offers/$offerId": {
+      "filePath": "_protected/admin/offers/$offerId.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/_student/booking/": {
+      "filePath": "_protected/_student/booking/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/_student/gallery/": {
+      "filePath": "_protected/_student/gallery/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/_student/offers/": {
+      "filePath": "_protected/_student/offers/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/_student/profile/": {
+      "filePath": "_protected/_student/profile/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/_student/schedule/": {
+      "filePath": "_protected/_student/schedule/index.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/admin/analytics/": {
+      "filePath": "_protected/admin/analytics/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/contacts/": {
+      "filePath": "_protected/admin/contacts/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/event-manager/": {
+      "filePath": "_protected/admin/event-manager/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/events/": {
+      "filePath": "_protected/admin/events/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/features/": {
+      "filePath": "_protected/admin/features/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/gowns/": {
+      "filePath": "_protected/admin/gowns/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/offers/": {
+      "filePath": "_protected/admin/offers/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/settings/": {
+      "filePath": "_protected/admin/settings/index.tsx",
+      "parent": "/_protected/admin/settings"
+    },
+    "/_protected/admin/stage-queue/": {
+      "filePath": "_protected/admin/stage-queue/index.tsx",
+      "parent": "/_protected/admin"
+    },
+    "/_protected/admin/events/$eventId/gown-schemas": {
+      "filePath": "_protected/admin/events/$eventId/gown-schemas.tsx",
+      "parent": "/_protected/admin/events/$eventId"
+    },
+    "/_protected/_student/settings/index/backup": {
+      "filePath": "_protected/_student/settings/index.backup.tsx",
+      "parent": "/_protected/_student"
+    },
+    "/_protected/_student/settings/index/disabled": {
+      "filePath": "_protected/_student/settings/index.disabled.tsx",
+      "parent": "/_protected/_student"
     }
   }
 }

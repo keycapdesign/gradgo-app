@@ -1,0 +1,102 @@
+/* Student theme - always uses dark mode values */
+:root {
+  /* Force dark mode values for all student routes - copied from app.css .dark */
+  --background: oklch(0.24 0.1307 294.18);
+  --foreground: oklch(0.96 0.0099 299.91);
+  --card: oklch(0.18 0.0967 297.37);
+  --card-foreground: oklch(0.96 0.0099 299.91);
+  --popover: oklch(0.24 0.1307 294.18);
+  --popover-foreground: oklch(0.96 0.0099 299.91);
+  --primary: oklch(0.48 0.2157 290.36);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.0099 299.91);
+  --secondary-foreground: oklch(0.18 0.0967 297.37);
+  --muted: oklch(0.37 0.158 292.27);
+  --muted-foreground: oklch(0.75 0.05 290.38);
+  --accent: oklch(0.37 0.158 292.27);
+  --accent-foreground: oklch(0.96 0.0099 299.91);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.0086 17.3);
+  --warning: oklch(0.77 0.1574 93.22);
+  --warning-foreground: oklch(0.96 0.0099 299.91);
+  --success: oklch(0.64 0.1937 145.98);
+  --success-foreground: oklch(0.96 0.0099 299.91);
+  --border: oklch(0.12 0.0621 304.96 / 0.45);
+  --input: oklch(0.18 0.0967 297.37);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.18 0.0967 297.37);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.48 0.2157 290.36);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.48 0.2157 290.36);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+  --gradient-primary: linear-gradient(128deg, rgba(105, 12, 215, 1) 0%, rgba(146, 70, 251, 1) 100%);
+
+  /* Force dark mode class on the root element */
+  color-scheme: dark;
+}
+
+/* Ensure dark mode styles are applied even if .dark class is removed */
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Force dark mode class on the html element */
+html:not(.dark) {
+  /* Add the dark class to ensure all dark mode styles apply */
+  filter: none !important; /* Prevent any light mode filters */
+}
+
+/* Apply dark mode styles directly to ensure they work even without JS */
+body {
+  background-color: oklch(0.24 0.1307 294.18) !important;
+  color: oklch(0.96 0.0099 299.91) !important;
+}
+
+/* Force dark mode for all components */
+[class*='card'],
+[class*='button'],
+[class*='dropdown'],
+[class*='popover'],
+[class*='dialog'],
+[class*='sheet'],
+[class*='tabs'],
+[class*='input'],
+[class*='select'],
+[class*='checkbox'],
+[class*='switch'],
+[class*='radio'],
+[class*='slider'],
+[class*='toggle'],
+[class*='tooltip'],
+[class*='menu'] {
+  color-scheme: dark !important;
+}
+
+/* Hide scrollbars */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Active pagination dot */
+.pagination-dot {
+  transition: all 0.3s ease;
+}
+
+.pagination-dot.active {
+  background-color: var(--primary);
+  width: 2rem;
+}
